@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { supabase, type Category, type Tool } from '../lib/supabase';
+import { fetchCategoryBySlug, fetchToolsForCategory } from '../lib/mockData';
 import { useFetch } from '../lib/useFetch';
 import { getIcon } from '../lib/icons';
 import { Breadcrumb } from '../components/ui/Breadcrumb';
@@ -21,35 +21,12 @@ export function CategoryDetailsPage({ slug, onNavigate }: CategoryDetailsPagePro
   const [pricingFilter, setPricingFilter] = useState<string | null>(null);
 
   const { data: category, loading: catLoading } = useFetch(async () => {
-    const { data, error } = await supabase
-      .from('categories')
-      .select('*')
-      .eq('slug', slug)
-      .maybeSingle();
-    if (error) throw error;
-    return data as Category | null;
+    return fetchCategoryBySlug(slug);
   }, [slug]);
 
   const { data: tools, loading: toolsLoading, error } = useFetch(async () => {
     if (!category) return [];
-
-    const { data: joins } = await supabase
-      .from('tool_categories')
-      .select('tool_id')
-      .eq('category_id', category.id);
-
-    if (!joins || joins.length === 0) return [];
-
-    const toolIds = joins.map((j) => j.tool_id);
-
-    const { data, error } = await supabase
-      .from('tools')
-      .select('*')
-      .in('id', toolIds)
-      .order('name');
-
-    if (error) throw error;
-    return (data ?? []) as Tool[];
+    return fetchToolsForCategory(category.id);
   }, [category]);
 
   const allTools = tools ?? [];

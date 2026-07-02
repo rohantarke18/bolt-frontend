@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { supabase, type Category } from '../lib/supabase';
+import { type Category, fetchAllCategories, countToolsForCategory } from '../lib/mockData';
 import { useFetch } from '../lib/useFetch';
 import { getIcon } from '../lib/icons';
 import { SearchBar } from '../components/ui/SearchBar';
@@ -17,23 +17,8 @@ interface CategoriesPageProps {
 
 export function CategoriesPage({ search, onSearchChange, onNavigate }: CategoriesPageProps) {
   const { data: categories, loading, error } = useFetch(async () => {
-    const { data, error } = await supabase
-      .from('categories')
-      .select('*')
-      .order('sort_order');
-
-    if (error) throw error;
-
-    const withCounts = await Promise.all(
-      (data ?? []).map(async (c) => {
-        const { count } = await supabase
-          .from('tool_categories')
-          .select('*', { count: 'exact', head: true })
-          .eq('category_id', c.id);
-        return { ...c, tool_count: count ?? 0 };
-      })
-    );
-
+    const data = await fetchAllCategories();
+    const withCounts = data.map((c) => ({ ...c, tool_count: countToolsForCategory(c.id) }));
     return withCounts.sort((a, b) => b.tool_count - a.tool_count);
   });
 

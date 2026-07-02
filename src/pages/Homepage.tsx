@@ -1,5 +1,13 @@
 import { ArrowRight, Sparkles, Layers, ListChecks } from 'lucide-react';
-import { supabase, type Category, type Task } from '../lib/supabase';
+import {
+  type Category,
+  type Task,
+  fetchFeaturedCategories,
+  fetchPopularTasks,
+  fetchTotalToolsCount,
+  countToolsForCategory,
+  countToolsForTask,
+} from '../lib/mockData';
 import { useFetch } from '../lib/useFetch';
 import { getIcon } from '../lib/icons';
 import { Button } from '../components/ui/Button';
@@ -11,51 +19,19 @@ interface HomepageProps {
 
 export function Homepage({ onNavigate }: HomepageProps) {
   const { data: featuredCategories, loading: catLoading } = useFetch(async () => {
-    const { data, error } = await supabase
-      .from('categories')
-      .select('*, tool_categories!inner(category_id)')
-      .eq('is_featured', true)
-      .order('sort_order');
-    if (error) throw error;
-
-    // Count tools per category
-    const counts = await Promise.all(
-      (data ?? []).map(async (c) => {
-        const { count } = await supabase
-          .from('tool_categories')
-          .select('*', { count: 'exact', head: true })
-          .eq('category_id', c.id);
-        return { ...c, tool_count: count ?? 0 };
-      })
-    );
+    const data = await fetchFeaturedCategories();
+    const counts = data.map((c) => ({ ...c, tool_count: countToolsForCategory(c.id) }));
     return counts.sort((a, b) => b.tool_count - a.tool_count);
   });
 
   const { data: popularTasks, loading: taskLoading } = useFetch(async () => {
-    const { data, error } = await supabase
-      .from('tasks')
-      .select('*, tool_tasks!inner(task_id)')
-      .eq('is_popular', true)
-      .order('sort_order');
-    if (error) throw error;
-
-    const counts = await Promise.all(
-      (data ?? []).map(async (t) => {
-        const { count } = await supabase
-          .from('tool_tasks')
-          .select('*', { count: 'exact', head: true })
-          .eq('task_id', t.id);
-        return { ...t, tool_count: count ?? 0 };
-      })
-    );
+    const data = await fetchPopularTasks();
+    const counts = data.map((t) => ({ ...t, tool_count: countToolsForTask(t.id) }));
     return counts.sort((a, b) => b.tool_count - a.tool_count);
   });
 
   const { data: totalTools } = useFetch(async () => {
-    const { count } = await supabase
-      .from('tools')
-      .select('*', { count: 'exact', head: true });
-    return count ?? 0;
+    return fetchTotalToolsCount();
   });
 
   return (

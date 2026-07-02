@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react';
-import type { TaskWithCount } from '../lib/supabase';
+import type { TaskWithCount } from '../lib/mockData';
 
 interface TaskRowProps {
   task: TaskWithCount;

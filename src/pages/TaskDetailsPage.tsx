@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { supabase, type Task, type Tool } from '../lib/supabase';
+import { fetchTaskBySlug, fetchToolsForTask } from '../lib/mockData';
 import { useFetch } from '../lib/useFetch';
 import { Breadcrumb } from '../components/ui/Breadcrumb';
 import { FilterChips } from '../components/ui/FilterChips';
@@ -20,35 +20,12 @@ export function TaskDetailsPage({ slug, onNavigate }: TaskDetailsPageProps) {
   const [pricingFilter, setPricingFilter] = useState<string | null>(null);
 
   const { data: task, loading: taskLoading } = useFetch(async () => {
-    const { data, error } = await supabase
-      .from('tasks')
-      .select('*')
-      .eq('slug', slug)
-      .maybeSingle();
-    if (error) throw error;
-    return data as Task | null;
+    return fetchTaskBySlug(slug);
   }, [slug]);
 
   const { data: tools, loading: toolsLoading, error } = useFetch(async () => {
     if (!task) return [];
-
-    const { data: joins } = await supabase
-      .from('tool_tasks')
-      .select('tool_id')
-      .eq('task_id', task.id);
-
-    if (!joins || joins.length === 0) return [];
-
-    const toolIds = joins.map((j) => j.tool_id);
-
-    const { data, error } = await supabase
-      .from('tools')
-      .select('*')
-      .in('id', toolIds)
-      .order('name');
-
-    if (error) throw error;
-    return (data ?? []) as Tool[];
+    return fetchToolsForTask(task.id);
   }, [task]);
 
   const allTools = tools ?? [];

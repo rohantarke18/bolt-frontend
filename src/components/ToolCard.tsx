@@ -1,5 +1,5 @@
 import { ExternalLink } from 'lucide-react';
-import type { Tool } from '../lib/supabase';
+import type { Tool } from '../lib/mockData';
 
 interface ToolCardProps {
   tool: Tool;

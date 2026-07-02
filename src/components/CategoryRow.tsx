@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { getIcon } from '../lib/icons';
-import type { CategoryWithCount } from '../lib/supabase';
+import type { CategoryWithCount } from '../lib/mockData';
 
 interface CategoryRowProps {
   category: CategoryWithCount;

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { supabase, type Task } from '../lib/supabase';
+import { type Task, fetchAllTasks, countToolsForTask } from '../lib/mockData';
 import { useFetch } from '../lib/useFetch';
 import { SearchBar } from '../components/ui/SearchBar';
 import { FilterChips } from '../components/ui/FilterChips';
@@ -16,23 +16,8 @@ interface TasksPageProps {
 
 export function TasksPage({ search, onSearchChange, onNavigate }: TasksPageProps) {
   const { data: tasks, loading, error } = useFetch(async () => {
-    const { data, error } = await supabase
-      .from('tasks')
-      .select('*')
-      .order('sort_order');
-
-    if (error) throw error;
-
-    const withCounts = await Promise.all(
-      (data ?? []).map(async (t) => {
-        const { count } = await supabase
-          .from('tool_tasks')
-          .select('*', { count: 'exact', head: true })
-          .eq('task_id', t.id);
-        return { ...t, tool_count: count ?? 0 };
-      })
-    );
-
+    const data = await fetchAllTasks();
+    const withCounts = data.map((t) => ({ ...t, tool_count: countToolsForTask(t.id) }));
     return withCounts.sort((a, b) => b.tool_count - a.tool_count);
   });
 
