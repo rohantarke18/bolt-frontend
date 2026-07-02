@@ -20,12 +20,12 @@ export function ToolCard({ tool }: ToolCardProps) {
     .join('')
     .toUpperCase();
 
-  const pricingClass = pricingColors[tool.pricing_type] ?? 'bg-surface-2 text-ink-500';
+  const pricingClass = pricingColors[tool.pricing_type] ?? 'bg-surface-3 text-ink-500';
 
   return (
     <div className="flex items-start gap-4 p-5 border-b border-border-subtle last:border-b-0 transition-colors duration-150 hover:bg-surface-1">
       {/* Logo */}
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-ink-700 to-ink-900 text-white text-sm font-semibold shrink-0 shadow-sm">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-800 text-white text-sm font-semibold shrink-0 shadow-sm">
         {initials}
       </div>
 
@@ -48,7 +48,7 @@ export function ToolCard({ tool }: ToolCardProps) {
           href={tool.website_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 h-8 px-3 text-2xs font-medium text-ink-700 bg-white border border-border rounded-md hover:bg-surface-2 hover:border-border-strong transition-all duration-150 shrink-0"
+          className="inline-flex items-center gap-1.5 h-8 px-3 text-2xs font-medium text-ink-700 bg-surface-2 border border-border rounded-md hover:bg-surface-3 hover:border-border-strong transition-all duration-150 shrink-0"
         >
           Visit
           <ExternalLink size={12} />

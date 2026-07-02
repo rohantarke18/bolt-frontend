@@ -22,7 +22,7 @@ export function TaskRow({ task, onNavigate }: TaskRowProps) {
       </div>
 
       <div className="flex items-center gap-3 shrink-0">
-        <span className="hidden sm:inline text-2xs font-medium text-ink-400 px-2 py-0.5 rounded-full bg-surface-2">
+        <span className="hidden sm:inline text-2xs font-medium text-ink-400 px-2 py-0.5 rounded-full bg-surface-3">
           {task.tool_count} {task.tool_count === 1 ? 'tool' : 'tools'}
         </span>
         <ArrowRight

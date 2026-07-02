@@ -15,7 +15,7 @@ export function CategoryRow({ category, onNavigate }: CategoryRowProps) {
       onClick={() => onNavigate(`/categories/${category.slug}`)}
       className="group flex w-full items-center gap-4 px-4 py-4 text-left border-b border-border-subtle last:border-b-0 transition-colors duration-150 hover:bg-surface-1"
     >
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-2 border border-border group-hover:bg-primary-50 group-hover:border-primary-200 transition-colors duration-150 shrink-0">
+      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 border border-border group-hover:bg-primary-50 group-hover:border-primary-200 transition-colors duration-150 shrink-0">
         <Icon size={18} className="text-ink-600 group-hover:text-primary-600 transition-colors duration-150" />
       </div>
 
@@ -29,7 +29,7 @@ export function CategoryRow({ category, onNavigate }: CategoryRowProps) {
       </div>
 
       <div className="flex items-center gap-3 shrink-0">
-        <span className="hidden sm:inline text-2xs font-medium text-ink-400 px-2 py-0.5 rounded-full bg-surface-2">
+        <span className="hidden sm:inline text-2xs font-medium text-ink-400 px-2 py-0.5 rounded-full bg-surface-3">
           {category.tool_count} {category.tool_count === 1 ? 'tool' : 'tools'}
         </span>
         <ArrowRight

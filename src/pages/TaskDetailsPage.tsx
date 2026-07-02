@@ -146,7 +146,7 @@ export function TaskDetailsPage({ slug, onNavigate }: TaskDetailsPageProps) {
           }
         />
       ) : (
-        <div className="border border-border rounded-xl bg-white overflow-hidden">
+        <div className="border border-border rounded-xl bg-surface-2 overflow-hidden">
           {filteredTools.map((tool) => (
             <ToolCard key={tool.id} tool={tool} />
           ))}

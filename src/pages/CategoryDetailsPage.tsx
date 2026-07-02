@@ -102,7 +102,7 @@ export function CategoryDetailsPage({ slug, onNavigate }: CategoryDetailsPagePro
       ) : (
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-2 border border-border">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 border border-border">
               {Icon && <Icon size={18} className="text-ink-600" />}
             </div>
           </div>
@@ -155,7 +155,7 @@ export function CategoryDetailsPage({ slug, onNavigate }: CategoryDetailsPagePro
           }
         />
       ) : (
-        <div className="border border-border rounded-xl bg-white overflow-hidden">
+        <div className="border border-border rounded-xl bg-surface-2 overflow-hidden">
           {filteredTools.map((tool) => (
             <ToolCard key={tool.id} tool={tool} />
           ))}

@@ -17,14 +17,14 @@
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    background-color: #fafafa;
-    color: #1a1a1e;
+    background-color: #010102;
+    color: #f7f8f8;
     letter-spacing: -0.011em;
   }
 
   ::selection {
-    background-color: rgba(12, 140, 230, 0.15);
-    color: #025a9e;
+    background-color: rgba(94, 106, 210, 0.35);
+    color: #f7f8f8;
   }
 }
 
@@ -32,16 +32,16 @@
   .skeleton-shimmer {
     background: linear-gradient(
       90deg,
-      #ececee 0%,
-      #f4f4f5 50%,
-      #ececee 100%
+      #141516 0%,
+      #1c1d1f 50%,
+      #141516 100%
     );
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }
 }
 
-/* Custom scrollbar — subtle, Linear-style */
+/* Custom scrollbar — subtle, Linear-style (dark) */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -52,11 +52,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d1d4;
+  background: #34343a;
   border-radius: 8px;
-  border: 2px solid #fafafa;
+  border: 2px solid #010102;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8b0;
+  background: #4a4d53;
 }

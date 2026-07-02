@@ -31,7 +31,7 @@ export function Navbar({ currentPath, onNavigate }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         scrolled
-          ? 'bg-white/80 backdrop-blur-xl border-b border-border'
+          ? 'bg-surface-1/80 backdrop-blur-xl border-b border-border'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -42,7 +42,7 @@ export function Navbar({ currentPath, onNavigate }: NavbarProps) {
             onClick={() => onNavigate('/')}
             className="flex items-center gap-2 group"
           >
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-ink-900 group-hover:bg-ink-800 transition-colors">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary-600 group-hover:bg-primary-700 transition-colors">
               <Sparkles size={15} className="text-white" />
             </div>
             <span className="text-sm font-semibold text-ink-900 tracking-tight">

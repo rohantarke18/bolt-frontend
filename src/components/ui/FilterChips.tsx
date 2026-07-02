@@ -13,8 +13,8 @@ export function FilterChips({ options, selected, onSelect }: FilterChipsProps) {
         onClick={() => onSelect(null)}
         className={`h-7 px-3 text-2xs font-medium rounded-full border transition-all duration-150 ${
           selected === null
-            ? 'bg-ink-900 text-white border-ink-900'
-            : 'bg-white text-ink-500 border-border hover:border-border-strong hover:text-ink-700'
+            ? 'bg-primary-600 text-white border-primary-600'
+            : 'bg-surface-2 text-ink-500 border-border hover:border-border-strong hover:text-ink-700'
         }`}
       >
         All
@@ -27,8 +27,8 @@ export function FilterChips({ options, selected, onSelect }: FilterChipsProps) {
             onClick={() => onSelect(isActive ? null : option)}
             className={`h-7 px-3 text-2xs font-medium rounded-full border transition-all duration-150 ${
               isActive
-                ? 'bg-ink-900 text-white border-ink-900'
-                : 'bg-white text-ink-500 border-border hover:border-border-strong hover:text-ink-700'
+                ? 'bg-primary-600 text-white border-primary-600'
+                : 'bg-surface-2 text-ink-500 border-border hover:border-border-strong hover:text-ink-700'
             }`}
           >
             {option}

@@ -126,9 +126,9 @@ export function CategoriesPage({ search, onSearchChange, onNavigate }: Categorie
                 <button
                   key={cat.id}
                   onClick={() => onNavigate(`/categories/${cat.slug}`)}
-                  className="group p-4 border border-border rounded-xl bg-white text-left transition-all duration-200 hover:border-border-strong hover:shadow-md"
+                  className="group p-4 border border-border rounded-xl bg-surface-2 text-left transition-all duration-200 hover:border-border-strong hover:shadow-md"
                 >
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-2 border border-border group-hover:bg-primary-50 group-hover:border-primary-200 transition-colors duration-200 mb-2.5">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-3 border border-border group-hover:bg-primary-50 group-hover:border-primary-200 transition-colors duration-200 mb-2.5">
                     <Icon size={16} className="text-ink-600 group-hover:text-primary-600 transition-colors duration-200" />
                   </div>
                   <h3 className="text-sm font-semibold text-ink-900 truncate">{cat.name}</h3>
@@ -160,7 +160,7 @@ export function CategoriesPage({ search, onSearchChange, onNavigate }: Categorie
           }
         />
       ) : (
-        <div className="border border-border rounded-xl bg-white overflow-hidden">
+        <div className="border border-border rounded-xl bg-surface-2 overflow-hidden">
           {filtered.map((cat) => (
             <CategoryRow key={cat.id} category={cat} onNavigate={onNavigate} />
           ))}

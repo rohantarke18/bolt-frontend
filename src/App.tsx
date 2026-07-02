@@ -73,7 +73,7 @@ function App() {
         </p>
         <button
           onClick={() => handleNavigate('/')}
-          className="mt-6 inline-flex items-center h-9 px-4 text-sm font-medium bg-ink-900 text-white rounded-md hover:bg-ink-800 transition-colors"
+          className="mt-6 inline-flex items-center h-9 px-4 text-sm font-medium bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
         >
           Go home
         </button>

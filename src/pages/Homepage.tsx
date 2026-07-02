@@ -64,16 +64,16 @@ export function Homepage({ onNavigate }: HomepageProps) {
       <section className="relative overflow-hidden">
         {/* Subtle background pattern */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.08]"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 1px 1px, #0a0a0b 1px, transparent 0)',
+              'radial-gradient(circle at 1px 1px, #f7f8f8 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-20">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 h-7 px-3 rounded-full border border-border bg-white text-2xs font-medium text-ink-500 mb-6 animate-fade-in-up">
+            <div className="inline-flex items-center gap-2 h-7 px-3 rounded-full border border-border bg-surface-2 text-2xs font-medium text-ink-500 mb-6 animate-fade-in-up">
               <Sparkles size={12} className="text-primary-500" />
               {totalTools ?? '—'} AI tools and counting
             </div>
@@ -135,9 +135,9 @@ export function Homepage({ onNavigate }: HomepageProps) {
                 <button
                   key={(cat as Category).id}
                   onClick={() => onNavigate(`/categories/${(cat as Category).slug}`)}
-                  className="group p-5 border border-border rounded-xl bg-white text-left transition-all duration-200 hover:border-border-strong hover:shadow-md"
+                  className="group p-5 border border-border rounded-xl bg-surface-2 text-left transition-all duration-200 hover:border-border-strong hover:shadow-md"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-2 border border-border group-hover:bg-primary-50 group-hover:border-primary-200 transition-colors duration-200 mb-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 border border-border group-hover:bg-primary-50 group-hover:border-primary-200 transition-colors duration-200 mb-3">
                     <Icon size={18} className="text-ink-600 group-hover:text-primary-600 transition-colors duration-200" />
                   </div>
                   <h3 className="text-sm font-semibold text-ink-900">
@@ -181,7 +181,7 @@ export function Homepage({ onNavigate }: HomepageProps) {
               <button
                 key={(task as Task).id}
                 onClick={() => onNavigate(`/tasks/${(task as Task).slug}`)}
-                className="group flex items-center justify-between p-4 border border-border rounded-xl bg-white text-left transition-all duration-200 hover:border-border-strong hover:shadow-md"
+                className="group flex items-center justify-between p-4 border border-border rounded-xl bg-surface-2 text-left transition-all duration-200 hover:border-border-strong hover:shadow-md"
               >
                 <div className="min-w-0">
                   <h3 className="text-sm font-semibold text-ink-900 truncate">
@@ -204,8 +204,8 @@ export function Homepage({ onNavigate }: HomepageProps) {
       {/* Platform intro */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-6 border border-border rounded-xl bg-white">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-2 border border-border mb-4">
+          <div className="p-6 border border-border rounded-xl bg-surface-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 border border-border mb-4">
               <Layers size={18} className="text-ink-600" />
             </div>
             <h3 className="text-sm font-semibold text-ink-900">Organized by category</h3>
@@ -214,8 +214,8 @@ export function Homepage({ onNavigate }: HomepageProps) {
             </p>
           </div>
 
-          <div className="p-6 border border-border rounded-xl bg-white">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-2 border border-border mb-4">
+          <div className="p-6 border border-border rounded-xl bg-surface-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 border border-border mb-4">
               <ListChecks size={18} className="text-ink-600" />
             </div>
             <h3 className="text-sm font-semibold text-ink-900">Task-driven discovery</h3>
@@ -224,8 +224,8 @@ export function Homepage({ onNavigate }: HomepageProps) {
             </p>
           </div>
 
-          <div className="p-6 border border-border rounded-xl bg-white">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-2 border border-border mb-4">
+          <div className="p-6 border border-border rounded-xl bg-surface-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 border border-border mb-4">
               <Sparkles size={18} className="text-ink-600" />
             </div>
             <h3 className="text-sm font-semibold text-ink-900">Curated and current</h3>
