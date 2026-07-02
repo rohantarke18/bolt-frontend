@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    background-color: #fafafa;
+    color: #1a1a1e;
+    letter-spacing: -0.011em;
+  }
+
+  ::selection {
+    background-color: rgba(12, 140, 230, 0.15);
+    color: #025a9e;
+  }
+}
+
+@layer components {
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      #ececee 0%,
+      #f4f4f5 50%,
+      #ececee 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* Custom scrollbar — subtle, Linear-style */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d1d4;
+  border-radius: 8px;
+  border: 2px solid #fafafa;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8b0;
+}
