@@ -1,0 +1,143 @@
+import { useMemo, useState } from 'react';
+import { fetchCategoryBySlug, fetchToolsForCategory } from '../lib/mockData';
+import { useFetch } from '../lib/useFetch';
+import { getIcon } from '../lib/icons';
+import { Breadcrumb } from '../components/ui/Breadcrumb';
+import { FilterChips } from '../components/ui/FilterChips';
+import { ToolCard } from '../components/ToolCard';
+import { EmptyState } from '../components/ui/EmptyState';
+import { SkeletonList } from '../components/ui/Skeleton';
+import { Button } from '../components/ui/Button';
+import { ArrowLeft } from 'lucide-react';
+
+interface CategoryDetailsPageProps {
+  slug: string;
+  onNavigate: (path: string) => void;
+}
+
+const pricingOptions = ['Free', 'Freemium', 'Paid', 'Free Trial'];
+
+export function CategoryDetailsPage({ slug, onNavigate }: CategoryDetailsPageProps) {
+  const [pricingFilter, setPricingFilter] = useState<string | null>(null);
+
+  const { data: category, loading: catLoading } = useFetch(async () => {
+    return fetchCategoryBySlug(slug);
+  }, [slug]);
+
+  const { data: tools, loading: toolsLoading, error } = useFetch(async () => {
+    if (!category) return [];
+    return fetchToolsForCategory(category.id);
+  }, [category]);
+
+  const allTools = tools ?? [];
+
+  const filteredTools = useMemo(() => {
+    if (!pricingFilter) return allTools;
+    return allTools.filter((t) => t.pricing_type === pricingFilter);
+  }, [allTools, pricingFilter]);
+
+  const Icon = category ? getIcon(category.icon_name) : null;
+
+  if (!catLoading && !category) {
+    return (
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 py-20">
+        <EmptyState
+          title="Category not found"
+          description="This category may have been moved or deleted."
+          action={
+            <Button onClick={() => onNavigate('/categories')}>
+              <ArrowLeft size={14} />
+              Back to Categories
+            </Button>
+          }
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-content px-4 sm:px-6 py-10 sm:py-12 animate-fade-in">
+      {/* Breadcrumb */}
+      <div className="mb-7">
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Categories', href: '/categories' },
+            { label: category?.name ?? '...' },
+          ]}
+          onNavigate={onNavigate}
+        />
+      </div>
+
+      {/* Category header */}
+      {catLoading ? (
+        <div className="space-y-3 mb-9">
+          <div className="h-11 w-11 rounded-xl skeleton-shimmer" />
+          <div className="h-7 w-48 rounded skeleton-shimmer" />
+          <div className="h-4 w-72 rounded skeleton-shimmer" />
+        </div>
+      ) : (
+        <div className="mb-9">
+          <div className="flex items-center gap-3.5 mb-4">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-3 border border-border shadow-xs">
+              {Icon && <Icon size={19} strokeWidth={1.9} className="text-primary-300" />}
+            </div>
+          </div>
+          <h1 className="text-[26px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">
+            {category?.name}
+          </h1>
+          <p className="text-[14px] text-ink-500 mt-2 max-w-xl leading-relaxed">
+            {category?.description}
+          </p>
+          <p className="text-2xs font-medium text-ink-500 mt-3.5">
+            {allTools.length} {allTools.length === 1 ? 'tool' : 'tools'} available
+          </p>
+        </div>
+      )}
+
+      {/* Filters */}
+      {!toolsLoading && allTools.length > 0 && (
+        <div className="mb-6">
+          <FilterChips
+            options={pricingOptions}
+            selected={pricingFilter}
+            onSelect={setPricingFilter}
+          />
+        </div>
+      )}
+
+      {/* Tool listing */}
+      {toolsLoading ? (
+        <SkeletonList count={5} variant="card" />
+      ) : error ? (
+        <EmptyState
+          title="Failed to load tools"
+          description={error}
+          action={<Button onClick={() => window.location.reload()}>Retry</Button>}
+        />
+      ) : filteredTools.length === 0 ? (
+        <EmptyState
+          title="No tools found"
+          description={
+            pricingFilter
+              ? `No ${pricingFilter} tools in this category yet.`
+              : 'No tools have been added to this category yet.'
+          }
+          action={
+            pricingFilter && (
+              <Button variant="secondary" onClick={() => setPricingFilter(null)}>
+                Clear filter
+              </Button>
+            )
+          }
+        />
+      ) : (
+        <div className="border border-border rounded-xl bg-surface-2/60 overflow-hidden">
+          {filteredTools.map((tool) => (
+            <ToolCard key={tool.id} tool={tool} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
