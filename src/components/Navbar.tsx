@@ -31,35 +31,35 @@ export function Navbar({ currentPath, onNavigate }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         scrolled
-          ? 'bg-surface-1/80 backdrop-blur-xl border-b border-border'
+          ? 'bg-surface-1/70 backdrop-blur-md border-b border-border-subtle'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex h-14 items-center justify-between">
+        <div className="flex h-11 items-center justify-between">
           {/* Logo */}
           <button
             onClick={() => onNavigate('/')}
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2.5 group bg-transparent border-0 p-0 cursor-pointer"
           >
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary-600 group-hover:bg-primary-700 transition-colors">
-              <Sparkles size={15} className="text-white" />
+            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-brand-purple border border-white/10 shadow-xs group-hover:brightness-110 transition-all duration-150">
+              <Sparkles size={12} className="text-white" />
             </div>
-            <span className="text-sm font-semibold text-ink-900 tracking-tight">
+            <span className="text-[13px] font-semibold text-ink-900 tracking-tight group-hover:text-white transition-colors">
               AI Discovery
             </span>
           </button>
 
-          {/* Desktop nav */}
+          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <button
                 key={link.path}
                 onClick={() => onNavigate(link.path)}
-                className={`h-8 px-3 text-sm font-medium rounded-md transition-all duration-150 ${
+                className={`h-7 px-2.5 text-[12px] font-medium rounded-md transition-all duration-150 cursor-pointer ${
                   isActive(link.path)
-                    ? 'text-ink-900 bg-surface-2'
-                    : 'text-ink-500 hover:text-ink-800 hover:bg-surface-1'
+                    ? 'text-ink-900 bg-surface-3 border border-border-subtle shadow-xs'
+                    : 'text-ink-500 hover:text-ink-900 hover:bg-surface-2/60'
                 }`}
               >
                 {link.label}
@@ -67,28 +67,28 @@ export function Navbar({ currentPath, onNavigate }: NavbarProps) {
             ))}
           </nav>
 
-          {/* Mobile toggle */}
+          {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex h-8 w-8 items-center justify-center rounded-md text-ink-600 hover:bg-surface-2 transition-colors"
+            className="md:hidden flex h-7 w-7 items-center justify-center rounded-md text-ink-500 hover:text-ink-800 hover:bg-surface-2 transition-colors cursor-pointer bg-transparent border-0 p-0"
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+            {mobileOpen ? <X size={16} /> : <Menu size={16} />}
           </button>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile Menu Dropdown */}
         {mobileOpen && (
-          <div className="md:hidden pb-3 animate-fade-in">
-            <nav className="flex flex-col gap-1">
+          <div className="md:hidden pb-3 border-t border-border-subtle mt-1 pt-2 bg-surface-1 animate-fade-in">
+            <nav className="flex flex-col gap-0.5">
               {navLinks.map((link) => (
                 <button
                   key={link.path}
                   onClick={() => onNavigate(link.path)}
-                  className={`h-9 px-3 text-sm font-medium rounded-md text-left transition-all duration-150 ${
+                  className={`h-8 px-3 text-[12px] font-medium rounded-md text-left transition-all duration-150 w-full cursor-pointer ${
                     isActive(link.path)
                       ? 'text-ink-900 bg-surface-2'
-                      : 'text-ink-500 hover:text-ink-800 hover:bg-surface-1'
+                      : 'text-ink-500 hover:text-ink-800 hover:bg-surface-1/50'
                   }`}
                 >
                   {link.label}

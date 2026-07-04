@@ -1,42 +1,103 @@
-import { ArrowRight } from 'lucide-react';
-import { getIcon } from '../lib/icons';
-import type { CategoryWithCount } from '../lib/mockData';
+import { useState, useEffect } from 'react';
+import { Menu, X, Sparkles } from 'lucide-react';
 
-interface CategoryRowProps {
-  category: CategoryWithCount;
+interface NavbarProps {
+  currentPath: string;
   onNavigate: (path: string) => void;
 }
 
-export function CategoryRow({ category, onNavigate }: CategoryRowProps) {
-  const Icon = getIcon(category.icon_name);
+export function Navbar({ currentPath, onNavigate }: NavbarProps) {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [currentPath]);
+
+  const navLinks = [
+    { label: 'Categories', path: '/categories' },
+    { label: 'Tasks', path: '/tasks' },
+  ];
+
+  const isActive = (path: string) => currentPath === path || currentPath.startsWith(path + '/');
 
   return (
-    <button
-      onClick={() => onNavigate(`/categories/${category.slug}`)}
-      className="group flex w-full items-center gap-4 px-4 py-4 text-left border-b border-border-subtle last:border-b-0 transition-colors duration-150 hover:bg-surface-1"
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+        scrolled
+          ? 'bg-surface-1/70 backdrop-blur-md border-b border-border-subtle'
+          : 'bg-transparent border-b border-transparent'
+      }`}
     >
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 border border-border group-hover:bg-primary-50 group-hover:border-primary-200 transition-colors duration-150 shrink-0">
-        <Icon size={18} className="text-ink-600 group-hover:text-primary-600 transition-colors duration-150" />
-      </div>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex h-11 items-center justify-between">
+          {/* Logo */}
+          <button
+            onClick={() => onNavigate('/')}
+            className="flex items-center gap-2.5 group"
+          >
+            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-brand-purple border border-white/10 shadow-xs group-hover:brightness-110 transition-all duration-150">
+              <Sparkles size={12} className="text-white" />
+            </div>
+            <span className="text-[13px] font-semibold text-ink-900 tracking-tight group-hover:text-white transition-colors">
+              AI Discovery
+            </span>
+          </button>
 
-      <div className="flex-1 min-w-0">
-        <h3 className="text-sm font-semibold text-ink-900 truncate">
-          {category.name}
-        </h3>
-        <p className="text-sm text-ink-400 truncate mt-0.5">
-          {category.description}
-        </p>
-      </div>
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <button
+                key={link.path}
+                onClick={() => onNavigate(link.path)}
+                className={`h-7 px-2.5 text-[12px] font-medium rounded-md transition-all duration-150 ${
+                  isActive(link.path)
+                    ? 'text-ink-900 bg-surface-3 border border-border-subtle shadow-xs'
+                    : 'text-ink-500 hover:text-ink-900 hover:bg-surface-2/60'
+                }`}
+              >
+                {link.label}
+              </button>
+            ))}
+          </nav>
 
-      <div className="flex items-center gap-3 shrink-0">
-        <span className="hidden sm:inline text-2xs font-medium text-ink-400 px-2 py-0.5 rounded-full bg-surface-3">
-          {category.tool_count} {category.tool_count === 1 ? 'tool' : 'tools'}
-        </span>
-        <ArrowRight
-          size={16}
-          className="text-ink-300 group-hover:text-ink-600 group-hover:translate-x-0.5 transition-all duration-150"
-        />
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden flex h-7 w-7 items-center justify-center rounded-md text-ink-500 hover:text-ink-800 hover:bg-surface-2 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={16} /> : <Menu size={16} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileOpen && (
+          <div className="md:hidden pb-3 border-t border-border-subtle mt-1 pt-2 bg-surface-1 animate-fade-in">
+            <nav className="flex flex-col gap-0.5">
+              {navLinks.map((link) => (
+                <button
+                  key={link.path}
+                  onClick={() => onNavigate(link.path)}
+                  className={`h-8 px-3 text-[12px] font-medium rounded-md text-left transition-all duration-150 ${
+                    isActive(link.path)
+                      ? 'text-ink-900 bg-surface-2'
+                      : 'text-ink-500 hover:text-ink-800 hover:bg-surface-1/50'
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
+            </nav>
+          </div>
+        )}
       </div>
-    </button>
+    </header>
   );
 }

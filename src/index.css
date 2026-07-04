@@ -19,6 +19,8 @@
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     background-color: #010102;
     color: #f7f8f8;
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
     letter-spacing: -0.011em;
   }
 
