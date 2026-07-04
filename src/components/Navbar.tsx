@@ -31,6 +31,7 @@ export function Navbar({ currentPath, onNavigate }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         scrolled
+<<<<<<< HEAD
           ? 'bg-surface-1/70 backdrop-blur-md border-b border-border-subtle'
           : 'bg-transparent border-b border-transparent'
       }`}
@@ -46,20 +47,49 @@ export function Navbar({ currentPath, onNavigate }: NavbarProps) {
               <Sparkles size={12} className="text-white" />
             </div>
             <span className="text-[13px] font-semibold text-ink-900 tracking-tight group-hover:text-white transition-colors">
+=======
+          ? 'bg-surface-1/75 backdrop-blur-xl border-b border-border'
+          : 'bg-surface-1/0 border-b border-transparent'
+      }`}
+    >
+      <div className="mx-auto max-w-shell px-4 sm:px-6">
+        <div className="flex h-14 items-center justify-between">
+          {/* Logo */}
+          <button
+            onClick={() => onNavigate('/')}
+            className="flex items-center gap-2.5 group rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
+          >
+            <div className="flex h-7 w-7 items-center justify-center rounded-[7px] bg-gradient-to-br from-primary-400 to-primary-700 shadow-[0_1px_2px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.15)] transition-transform duration-150 group-hover:scale-105 group-active:scale-95">
+              <Sparkles size={14} className="text-white" strokeWidth={2.25} />
+            </div>
+            <span className="font-display text-[13.5px] font-semibold text-ink-900 tracking-[-0.01em]">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
               AI Discovery
             </span>
           </button>
 
+<<<<<<< HEAD
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
+=======
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-0.5 p-0.5 rounded-lg bg-surface-2/60 border border-border-subtle">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
             {navLinks.map((link) => (
               <button
                 key={link.path}
                 onClick={() => onNavigate(link.path)}
+<<<<<<< HEAD
                 className={`h-7 px-2.5 text-[12px] font-medium rounded-md transition-all duration-150 cursor-pointer ${
                   isActive(link.path)
                     ? 'text-ink-900 bg-surface-3 border border-border-subtle shadow-xs'
                     : 'text-ink-500 hover:text-ink-900 hover:bg-surface-2/60'
+=======
+                className={`relative h-7 px-3.5 text-[13px] font-medium rounded-md transition-all duration-150 ${
+                  isActive(link.path)
+                    ? 'text-ink-900 bg-surface-3 shadow-xs'
+                    : 'text-ink-500 hover:text-ink-800'
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
                 }`}
               >
                 {link.label}
@@ -67,6 +97,7 @@ export function Navbar({ currentPath, onNavigate }: NavbarProps) {
             ))}
           </nav>
 
+<<<<<<< HEAD
           {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -81,14 +112,37 @@ export function Navbar({ currentPath, onNavigate }: NavbarProps) {
         {mobileOpen && (
           <div className="md:hidden pb-3 border-t border-border-subtle mt-1 pt-2 bg-surface-1 animate-fade-in">
             <nav className="flex flex-col gap-0.5">
+=======
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden flex h-8 w-8 items-center justify-center rounded-md text-ink-600 hover:bg-surface-2 active:scale-95 transition-all"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div className="md:hidden pb-3 animate-fade-in">
+            <nav className="flex flex-col gap-1">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
               {navLinks.map((link) => (
                 <button
                   key={link.path}
                   onClick={() => onNavigate(link.path)}
+<<<<<<< HEAD
                   className={`h-8 px-3 text-[12px] font-medium rounded-md text-left transition-all duration-150 w-full cursor-pointer ${
                     isActive(link.path)
                       ? 'text-ink-900 bg-surface-2'
                       : 'text-ink-500 hover:text-ink-800 hover:bg-surface-1/50'
+=======
+                  className={`h-9 px-3 text-sm font-medium rounded-md text-left transition-all duration-150 ${
+                    isActive(link.path)
+                      ? 'text-ink-900 bg-surface-2'
+                      : 'text-ink-500 hover:text-ink-800 hover:bg-surface-1'
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
                   }`}
                 >
                   {link.label}
@@ -100,4 +154,8 @@ export function Navbar({ currentPath, onNavigate }: NavbarProps) {
       </div>
     </header>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f

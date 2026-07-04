@@ -6,6 +6,7 @@ interface FooterProps {
 
 export function Footer({ onNavigate }: FooterProps) {
   return (
+<<<<<<< HEAD
     <footer className="border-t border-border bg-surface-1 mt-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
@@ -14,6 +15,18 @@ export function Footer({ onNavigate }: FooterProps) {
               <Sparkles size={15} className="text-white" />
             </div>
             <span className="text-sm font-semibold text-ink-900">AI Discovery</span>
+=======
+    <footer className="border-t border-border bg-surface-1 mt-24">
+      <div className="mx-auto max-w-shell px-4 sm:px-6 py-10">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-7 w-7 items-center justify-center rounded-[7px] bg-gradient-to-br from-primary-400 to-primary-700">
+              <Sparkles size={14} className="text-white" strokeWidth={2.25} />
+            </div>
+            <span className="font-display text-[13.5px] font-semibold text-ink-900 tracking-[-0.01em]">
+              AI Discovery
+            </span>
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
           </div>
 
           <nav className="flex items-center gap-6">

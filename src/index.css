@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+=======
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
 
 @tailwind base;
 @tailwind components;
@@ -19,8 +23,11 @@
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     background-color: #010102;
     color: #f7f8f8;
+<<<<<<< HEAD
     font-family: 'Inter', -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
+=======
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
     letter-spacing: -0.011em;
   }
 
@@ -28,6 +35,19 @@
     background-color: rgba(94, 106, 210, 0.35);
     color: #f7f8f8;
   }
+<<<<<<< HEAD
+=======
+
+  h1, h2, h3, h4 {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Consistent, visible keyboard focus without relying on browser default */
+  :focus-visible {
+    outline: none;
+  }
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
 }
 
 @layer components {
@@ -41,6 +61,33 @@
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }
+<<<<<<< HEAD
+=======
+
+  /* Signature moment: the overlapping brand-logo stack fans out on hover. */
+  .logo-stack-item {
+    transform: translateX(0) rotate(0deg);
+  }
+  .logo-stack:hover .logo-stack-item {
+    transform: translateX(calc(var(--i) * 3px)) translateY(calc(var(--i) * -2px))
+      rotate(calc(var(--i) * -3deg));
+  }
+
+  /* Hero highlight word */
+  .text-gradient-warm {
+    background: linear-gradient(120deg, #f7b84b 0%, #a3aaf0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
 }
 
 /* Custom scrollbar — subtle, Linear-style (dark) */

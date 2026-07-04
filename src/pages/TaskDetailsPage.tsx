@@ -53,9 +53,15 @@ export function TaskDetailsPage({ slug, onNavigate }: TaskDetailsPageProps) {
   }
 
   return (
+<<<<<<< HEAD
     <div className="mx-auto max-w-3xl px-4 sm:px-6 py-8 animate-fade-in">
       {/* Breadcrumb */}
       <div className="mb-6">
+=======
+    <div className="mx-auto max-w-content px-4 sm:px-6 py-10 sm:py-12 animate-fade-in">
+      {/* Breadcrumb */}
+      <div className="mb-7">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
         <Breadcrumb
           items={[
             { label: 'Home', href: '/' },
@@ -68,11 +74,16 @@ export function TaskDetailsPage({ slug, onNavigate }: TaskDetailsPageProps) {
 
       {/* Task header */}
       {taskLoading ? (
+<<<<<<< HEAD
         <div className="space-y-3 mb-8">
+=======
+        <div className="space-y-3 mb-9">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
           <div className="h-7 w-48 rounded skeleton-shimmer" />
           <div className="h-4 w-72 rounded skeleton-shimmer" />
         </div>
       ) : (
+<<<<<<< HEAD
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-ink-900 tracking-tight">
             {task?.name}
@@ -81,6 +92,16 @@ export function TaskDetailsPage({ slug, onNavigate }: TaskDetailsPageProps) {
             {task?.description}
           </p>
           <p className="text-2xs text-ink-400 mt-3">
+=======
+        <div className="mb-9">
+          <h1 className="font-display text-[26px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">
+            {task?.name}
+          </h1>
+          <p className="text-[14px] text-ink-500 mt-2 max-w-xl leading-relaxed">
+            {task?.description}
+          </p>
+          <p className="text-2xs font-medium text-ink-500 mt-3.5">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
             {allTools.length} {allTools.length === 1 ? 'tool' : 'tools'} available
           </p>
         </div>
@@ -88,7 +109,11 @@ export function TaskDetailsPage({ slug, onNavigate }: TaskDetailsPageProps) {
 
       {/* Filters */}
       {!toolsLoading && allTools.length > 0 && (
+<<<<<<< HEAD
         <div className="mb-5">
+=======
+        <div className="mb-6">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
           <FilterChips
             options={pricingOptions}
             selected={pricingFilter}
@@ -123,7 +148,11 @@ export function TaskDetailsPage({ slug, onNavigate }: TaskDetailsPageProps) {
           }
         />
       ) : (
+<<<<<<< HEAD
         <div className="border border-border rounded-xl bg-surface-2 overflow-hidden">
+=======
+        <div className="border border-border rounded-xl bg-surface-2/60 overflow-hidden">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
           {filteredTools.map((tool) => (
             <ToolCard key={tool.id} tool={tool} />
           ))}

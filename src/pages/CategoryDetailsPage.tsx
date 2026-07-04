@@ -2,6 +2,10 @@ import { useMemo, useState } from 'react';
 import { fetchCategoryBySlug, fetchToolsForCategory } from '../lib/mockData';
 import { useFetch } from '../lib/useFetch';
 import { getIcon } from '../lib/icons';
+<<<<<<< HEAD
+=======
+import { getCategoryAccent } from '../lib/categoryColors';
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
 import { Breadcrumb } from '../components/ui/Breadcrumb';
 import { FilterChips } from '../components/ui/FilterChips';
 import { ToolCard } from '../components/ToolCard';
@@ -56,9 +60,15 @@ export function CategoryDetailsPage({ slug, onNavigate }: CategoryDetailsPagePro
   }
 
   return (
+<<<<<<< HEAD
     <div className="mx-auto max-w-3xl px-4 sm:px-6 py-8 animate-fade-in">
       {/* Breadcrumb */}
       <div className="mb-6">
+=======
+    <div className="mx-auto max-w-content px-4 sm:px-6 py-10 sm:py-12 animate-fade-in">
+      {/* Breadcrumb */}
+      <div className="mb-7">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
         <Breadcrumb
           items={[
             { label: 'Home', href: '/' },
@@ -71,12 +81,18 @@ export function CategoryDetailsPage({ slug, onNavigate }: CategoryDetailsPagePro
 
       {/* Category header */}
       {catLoading ? (
+<<<<<<< HEAD
         <div className="space-y-3 mb-8">
           <div className="h-10 w-10 rounded-lg skeleton-shimmer" />
+=======
+        <div className="space-y-3 mb-9">
+          <div className="h-11 w-11 rounded-xl skeleton-shimmer" />
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
           <div className="h-7 w-48 rounded skeleton-shimmer" />
           <div className="h-4 w-72 rounded skeleton-shimmer" />
         </div>
       ) : (
+<<<<<<< HEAD
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-3 border border-border">
@@ -90,6 +106,33 @@ export function CategoryDetailsPage({ slug, onNavigate }: CategoryDetailsPagePro
             {category?.description}
           </p>
           <p className="text-2xs text-ink-400 mt-3">
+=======
+        <div className="mb-9">
+          <div className="flex items-center gap-3.5 mb-4">
+            <div
+              className="flex h-11 w-11 items-center justify-center rounded-xl shadow-xs"
+              style={{
+                background: category ? getCategoryAccent(category.slug).soft : undefined,
+                border: `1px solid ${category ? getCategoryAccent(category.slug).ring : 'rgba(255,255,255,0.08)'}`,
+              }}
+            >
+              {Icon && (
+                <Icon
+                  size={19}
+                  strokeWidth={1.9}
+                  style={{ color: category ? getCategoryAccent(category.slug).hex : undefined }}
+                />
+              )}
+            </div>
+          </div>
+          <h1 className="font-display text-[26px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">
+            {category?.name}
+          </h1>
+          <p className="text-[14px] text-ink-500 mt-2 max-w-xl leading-relaxed">
+            {category?.description}
+          </p>
+          <p className="text-2xs font-medium text-ink-500 mt-3.5">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
             {allTools.length} {allTools.length === 1 ? 'tool' : 'tools'} available
           </p>
         </div>
@@ -97,7 +140,11 @@ export function CategoryDetailsPage({ slug, onNavigate }: CategoryDetailsPagePro
 
       {/* Filters */}
       {!toolsLoading && allTools.length > 0 && (
+<<<<<<< HEAD
         <div className="mb-5">
+=======
+        <div className="mb-6">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
           <FilterChips
             options={pricingOptions}
             selected={pricingFilter}
@@ -132,7 +179,11 @@ export function CategoryDetailsPage({ slug, onNavigate }: CategoryDetailsPagePro
           }
         />
       ) : (
+<<<<<<< HEAD
         <div className="border border-border rounded-xl bg-surface-2 overflow-hidden">
+=======
+        <div className="border border-border rounded-xl bg-surface-2/60 overflow-hidden">
+>>>>>>> 13f8c418c1a9242f2843cd0d2f2bb11057b1a58f
           {filteredTools.map((tool) => (
             <ToolCard key={tool.id} tool={tool} />
           ))}
