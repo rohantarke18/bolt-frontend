@@ -74,7 +74,7 @@ export function TaskDetailsPage({ slug, onNavigate }: TaskDetailsPageProps) {
         </div>
       ) : (
         <div className="mb-9">
-          <h1 className="text-[26px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">
+          <h1 className="font-display text-[26px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">
             {task?.name}
           </h1>
           <p className="text-[14px] text-ink-500 mt-2 max-w-xl leading-relaxed">

@@ -73,7 +73,7 @@ export function TasksPage({ search, onSearchChange, onNavigate }: TasksPageProps
     <div className="mx-auto max-w-content px-4 sm:px-6 py-10 sm:py-12 animate-fade-in">
       {/* Page heading */}
       <div className="mb-9">
-        <h1 className="text-[26px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">Tasks</h1>
+        <h1 className="font-display text-[26px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">Tasks</h1>
         <p className="text-[14px] text-ink-400 mt-2 leading-relaxed">
           Find the right AI tool for what you need to get done.
         </p>

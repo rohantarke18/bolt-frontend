@@ -45,7 +45,7 @@ export function Navbar({ currentPath, onNavigate }: NavbarProps) {
             <div className="flex h-7 w-7 items-center justify-center rounded-[7px] bg-gradient-to-br from-primary-400 to-primary-700 shadow-[0_1px_2px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.15)] transition-transform duration-150 group-hover:scale-105 group-active:scale-95">
               <Sparkles size={14} className="text-white" strokeWidth={2.25} />
             </div>
-            <span className="text-[13.5px] font-semibold text-ink-900 tracking-[-0.01em]">
+            <span className="font-display text-[13.5px] font-semibold text-ink-900 tracking-[-0.01em]">
               AI Discovery
             </span>
           </button>

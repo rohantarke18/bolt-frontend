@@ -5,7 +5,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Sora', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       colors: {
         // Neutral ramp — Linear's real dark-theme surface ladder
@@ -73,6 +73,15 @@ export default {
           500: '#f87171',
           600: '#ef4444',
           700: '#fca5a5',
+        },
+        // Featured — warm gold, reserved for "Featured" badges and the
+        // hero's signature highlight. The one deliberately warm note against
+        // the cool navy canvas, used sparingly.
+        featured: {
+          50: 'rgba(245, 166, 35, 0.12)',
+          400: '#f7b84b',
+          500: '#f5a623',
+          600: '#d98a12',
         },
       },
       borderRadius: {

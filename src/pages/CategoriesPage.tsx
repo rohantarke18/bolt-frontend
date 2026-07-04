@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { type Category, fetchAllCategories, countToolsForCategory } from '../lib/mockData';
 import { useFetch } from '../lib/useFetch';
 import { getIcon } from '../lib/icons';
+import { getCategoryAccent } from '../lib/categoryColors';
 import { SearchBar } from '../components/ui/SearchBar';
 import { FilterChips } from '../components/ui/FilterChips';
 import { CategoryRow } from '../components/CategoryRow';
@@ -71,17 +72,17 @@ export function CategoriesPage({ search, onSearchChange, onNavigate }: Categorie
   }
 
   return (
-    <div className="mx-auto max-w-content px-4 sm:px-6 py-10 sm:py-12 animate-fade-in">
+    <div className="mx-auto max-w-content px-4 sm:px-6 py-8 sm:py-12 animate-fade-in">
       {/* Page heading */}
-      <div className="mb-9">
-        <h1 className="text-[26px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">Categories</h1>
+      <div className="mb-7 sm:mb-9">
+        <h1 className="font-display text-[24px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">Categories</h1>
         <p className="text-[14px] text-ink-400 mt-2 leading-relaxed">
           Browse AI tools organized by domain and use case.
         </p>
       </div>
 
       {/* Search */}
-      <div className="mb-6">
+      <div className="mb-5 sm:mb-6">
         <SearchBar
           value={search}
           onChange={onSearchChange}
@@ -89,9 +90,9 @@ export function CategoriesPage({ search, onSearchChange, onNavigate }: Categorie
         />
       </div>
 
-      {/* Filter chips */}
+      {/* Filter chips — horizontal scroll on mobile so nothing wraps awkwardly */}
       {!loading && filterOptions.length > 0 && (
-        <div className="mb-6">
+        <div className="mb-6 -mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
           <FilterChips
             options={filterOptions}
             selected={activeFilter}
@@ -107,14 +108,20 @@ export function CategoriesPage({ search, onSearchChange, onNavigate }: Categorie
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {popularCategories.map((cat) => {
               const Icon = getIcon(cat.icon_name);
+              const accent = getCategoryAccent(cat.slug);
               return (
                 <button
                   key={cat.id}
                   onClick={() => onNavigate(`/categories/${cat.slug}`)}
-                  className="group p-4 border border-border rounded-xl bg-surface-2 text-left transition-all duration-200 ease-out-expo hover:-translate-y-0.5 hover:border-border-strong hover:shadow-lg"
+                  className="group p-4 border border-border rounded-xl bg-surface-2 text-left transition-all duration-200 ease-out-expo hover:-translate-y-0.5 hover:shadow-lg"
+                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = accent.ring)}
+                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = '')}
                 >
-                  <div className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-surface-3 border border-border group-hover:bg-primary-500/10 group-hover:border-primary-500/30 transition-colors duration-200 mb-3">
-                    <Icon size={16} strokeWidth={1.9} className="text-ink-600 group-hover:text-primary-300 transition-colors duration-200" />
+                  <div
+                    className="flex h-9 w-9 items-center justify-center rounded-[10px] mb-3 transition-colors duration-200"
+                    style={{ background: accent.soft, border: `1px solid ${accent.ring}` }}
+                  >
+                    <Icon size={16} strokeWidth={1.9} style={{ color: accent.hex }} />
                   </div>
                   <h3 className="text-[13.5px] font-semibold text-ink-900 truncate tracking-[-0.006em]">{cat.name}</h3>
                   <p className="text-2xs text-ink-400 mt-1">{cat.tool_count} tools</p>

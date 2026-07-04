@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -48,6 +48,30 @@
     );
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
+  }
+
+  /* Signature moment: the overlapping brand-logo stack fans out on hover. */
+  .logo-stack-item {
+    transform: translateX(0) rotate(0deg);
+  }
+  .logo-stack:hover .logo-stack-item {
+    transform: translateX(calc(var(--i) * 3px)) translateY(calc(var(--i) * -2px))
+      rotate(calc(var(--i) * -3deg));
+  }
+
+  /* Hero highlight word */
+  .text-gradient-warm {
+    background: linear-gradient(120deg, #f7b84b 0%, #a3aaf0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
 

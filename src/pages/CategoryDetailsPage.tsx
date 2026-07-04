@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { fetchCategoryBySlug, fetchToolsForCategory } from '../lib/mockData';
 import { useFetch } from '../lib/useFetch';
 import { getIcon } from '../lib/icons';
+import { getCategoryAccent } from '../lib/categoryColors';
 import { Breadcrumb } from '../components/ui/Breadcrumb';
 import { FilterChips } from '../components/ui/FilterChips';
 import { ToolCard } from '../components/ToolCard';
@@ -79,11 +80,23 @@ export function CategoryDetailsPage({ slug, onNavigate }: CategoryDetailsPagePro
       ) : (
         <div className="mb-9">
           <div className="flex items-center gap-3.5 mb-4">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-3 border border-border shadow-xs">
-              {Icon && <Icon size={19} strokeWidth={1.9} className="text-primary-300" />}
+            <div
+              className="flex h-11 w-11 items-center justify-center rounded-xl shadow-xs"
+              style={{
+                background: category ? getCategoryAccent(category.slug).soft : undefined,
+                border: `1px solid ${category ? getCategoryAccent(category.slug).ring : 'rgba(255,255,255,0.08)'}`,
+              }}
+            >
+              {Icon && (
+                <Icon
+                  size={19}
+                  strokeWidth={1.9}
+                  style={{ color: category ? getCategoryAccent(category.slug).hex : undefined }}
+                />
+              )}
             </div>
           </div>
-          <h1 className="text-[26px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">
+          <h1 className="font-display text-[26px] sm:text-[28px] font-bold text-ink-900 tracking-[-0.02em]">
             {category?.name}
           </h1>
           <p className="text-[14px] text-ink-500 mt-2 max-w-xl leading-relaxed">
